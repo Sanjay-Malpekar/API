@@ -202,8 +202,9 @@ features = ['ATV',
 
 @app.route('/', methods = ['GET', 'POST'])
 def method_name():
-    dataset = request.get_json() 
+    dataset = request.get_json()
     given_sub = dataset['Sub_Category']
+    
     with open('price_sample.json', 'w') as f:
         json.dump(dataset, f)
     
@@ -217,8 +218,6 @@ def method_name():
     fashion_dataset['description_word_count'] = tc.text_analytics.count_words(Description_without_punctuation)
     fashion_dataset['description_tf_idf'] = tc.text_analytics.tf_idf(Description_without_punctuation)
     
-    
-
     for x in features:
         if x in given_sub:
             fashion_dataset[x] = 1
